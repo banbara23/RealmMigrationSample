@@ -7,19 +7,19 @@ public class CouponListItem extends RealmObject {
 
     private String shopId;
 
-    private Integer couponId;
+    private int couponId;
 
     private String name;
 
     private String thumbnail;
 
-    private Integer type;
+    private int type;
 
     private String periodDate;
 
-    private Long periodTimeStamp;
+    private long periodTimeStamp;
 
-    private Integer isRead;
+    private int isRead;
 
     private String shopFloorName;
     private String brandName;
@@ -27,10 +27,10 @@ public class CouponListItem extends RealmObject {
     private String onlineStoreType;
     private String startData;
 
-    private Long startDataTimeStamp;
-    private Integer couponType;
+    private long startDataTimeStamp;
+    private int couponType;
     private RealmList<CouponCategory> couponCategoryIds;
 
-    private Boolean isToshin;
+    private int isToshin;
 }
 
