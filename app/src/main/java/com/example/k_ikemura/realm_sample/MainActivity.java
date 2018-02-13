@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         RealmConfiguration realmConfiguration
                 = new RealmConfiguration.Builder()
                 .name("app_cache.realm")
-                .schemaVersion(0)
+                .schemaVersion(1)
                 .migration(new MyRealmMigration())
                 .build();
         Realm realm = Realm.getInstance(realmConfiguration);

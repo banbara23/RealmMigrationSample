@@ -4,6 +4,8 @@ import io.realm.RealmObject;
 
 public class CouponListItem extends RealmObject {
 
+    private int couponId;
+
     String id;
 
     String name;
