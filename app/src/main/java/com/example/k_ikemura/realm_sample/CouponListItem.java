@@ -1,25 +1,36 @@
 package com.example.k_ikemura.realm_sample;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
 
 public class CouponListItem extends RealmObject {
 
-    String id;
+    private String shopId;
 
-    String name;
+    private Integer couponId;
 
-    String thumbnail;
+    private String name;
 
-    int type;
+    private String thumbnail;
 
-    String date;
+    private Integer type;
 
-    int isRead;
+    private String periodDate;
 
-    String shopFloorName;
+    private Long periodTimeStamp;
 
-    String brandName;
+    private Integer isRead;
 
-    String onlineStoreType;
+    private String shopFloorName;
+    private String brandName;
+
+    private String onlineStoreType;
+    private String startData;
+
+    private Long startDataTimeStamp;
+    private Integer couponType;
+    private RealmList<CouponCategory> couponCategoryIds;
+
+    private Boolean isToshin;
 }
 
