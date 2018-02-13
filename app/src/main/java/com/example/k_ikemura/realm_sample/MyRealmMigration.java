@@ -21,9 +21,10 @@ class MyRealmMigration implements RealmMigration {
                         = schema.create("CouponCategory")
                         .addField("categoryId", Integer.class, FieldAttribute.REQUIRED);
             }
-
-            listSchema.addField("couponId", Integer.class, FieldAttribute.REQUIRED)
-                    .transform(new RealmObjectSchema.Function() {
+            if (!listSchema.hasField("couponId")) {
+                listSchema.addField("couponId", Integer.class, FieldAttribute.REQUIRED);
+                if (listSchema.hasField("id")) {
+                    listSchema.transform(new RealmObjectSchema.Function() {
                         @Override
                         public void apply(DynamicRealmObject obj) {
                             if (TextUtils.isEmpty(obj.getString("id"))) {
@@ -32,23 +33,47 @@ class MyRealmMigration implements RealmMigration {
                                 obj.set("couponId", Integer.valueOf(obj.getString("id")));
                             }
                         }
-                    })
-                    .removeField("id")
-                    .addField("shopId", String.class)
-                    .addField("periodDate", String.class)
-                    .transform(new RealmObjectSchema.Function() {
+                    });
+                }
+            }
+            if (listSchema.hasField("id")) {
+                listSchema.removeField("id");
+            }
+            if (!listSchema.hasField("shopId")) {
+                listSchema.addField("shopId", String.class);
+            }
+            if (!listSchema.hasField("periodDate")) {
+                listSchema.addField("periodDate", String.class);
+                if (listSchema.hasField("data")) {
+                    listSchema.transform(new RealmObjectSchema.Function() {
                         @Override
                         public void apply(DynamicRealmObject obj) {
                             obj.set("periodDate", obj.getString("data"));
                         }
-                    })
-                    .removeField("date")
-                    .addField("periodTimeStamp", Long.class, FieldAttribute.REQUIRED)
-                    .addField("startData", String.class)
-                    .addField("startDataTimeStamp", Long.class, FieldAttribute.REQUIRED)
-                    .addField("couponType", Integer.class, FieldAttribute.REQUIRED)
-                    .addRealmListField("couponCategoryIds", categorySchema)
-                    .addField("isToshin", Integer.class, FieldAttribute.REQUIRED);
+                    });
+                }
+            }
+            if (listSchema.hasField("date")) {
+                listSchema.removeField("date");
+            }
+            if (!listSchema.hasField("periodTimeStamp")) {
+                listSchema.addField("periodTimeStamp", Long.class, FieldAttribute.REQUIRED);
+            }
+            if (!listSchema.hasField("startData")) {
+                listSchema.addField("startData", String.class);
+            }
+            if (!listSchema.hasField("startDataTimeStamp")) {
+                listSchema.addField("startDataTimeStamp", Long.class, FieldAttribute.REQUIRED);
+            }
+            if (!listSchema.hasField("couponType")) {
+                listSchema.addField("couponType", Integer.class, FieldAttribute.REQUIRED);
+            }
+            if (!listSchema.hasField("couponCategoryIds")) {
+                listSchema.addRealmListField("couponCategoryIds", categorySchema);
+            }
+            if (!listSchema.hasField("isToshin")) {
+                listSchema.addField("isToshin", Integer.class, FieldAttribute.REQUIRED);
+            }
         }
     }
 }
